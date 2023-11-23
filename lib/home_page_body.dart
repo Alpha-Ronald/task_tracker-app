@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePageBody extends StatelessWidget {
@@ -11,26 +12,41 @@ class HomePageBody extends StatelessWidget {
         const SizedBox(
           height: 25,
         ),
+        //First set of compulsory tasks widgets
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-                width: double.maxFinite,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.black38.withOpacity(0.15),
-                  shape: BoxShape.rectangle,
-                  border: const Border(
-                      bottom: BorderSide(color: Colors.black38, width: 2)),
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
+            ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10.0),
+                  topRight: Radius.circular(10.0),
                 ),
-                child: const Text(
-                  'ososvoov ',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ))
+                child: Container(
+                    width: double.maxFinite,
+                    height: 60,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.black12,
+                      border: Border(
+                          bottom: BorderSide(color: Colors.black38, width: 1)),
+                    ),
+                    child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Compulsory tasks.',
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall,
+                              ),
+                              const Icon(
+                                CupertinoIcons.pin_fill,
+                                color: Color(0xFF1D364D),
+                                size: 20,
+                              )
+                            ]))))
           ],
         )
       ],

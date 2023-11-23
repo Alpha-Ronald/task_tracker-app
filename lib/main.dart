@@ -26,7 +26,10 @@ final ThemeData customTheme = ThemeData(
     textTheme: const TextTheme(
         titleMedium: TextStyle(fontSize: 18, color: Colors.white),
         titleLarge: TextStyle(fontSize: 22, color: Colors.white),
-        headlineSmall: TextStyle(fontSize: 50, color: Color(0xFF1D364D))));
+        headlineSmall: TextStyle(
+            fontSize: 18,
+            color: Color(0xFF1D364D),
+            fontWeight: FontWeight.bold)));
 
 //0xFFD4E1FF
 //#1d364d
@@ -43,6 +46,33 @@ class HomePage extends StatelessWidget {
         child: CustomAppBar(),
       ),
       body: const HomePageBody(),
+      /*body: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0),
+                    ),
+                    child: Container(
+                        width: double.maxFinite,
+                        height: 60,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: Color(0x66000000),
+                          border: Border(
+                              bottom:
+                                  BorderSide(color: Colors.black38, width: 2)),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(20),
+                          child: Text('Compulsory tasks.'),
+                        )))
+              ],
+            ))*/
     );
   }
 }
