@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_page_body.dart';
+import 'home_page_1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +29,11 @@ final ThemeData customTheme = ThemeData(
         headlineSmall: TextStyle(
             fontSize: 18,
             color: Color(0xFF1D364D),
-            fontWeight: FontWeight.bold)));
+            fontWeight: FontWeight.bold),
+        displaySmall: TextStyle(
+          fontSize: 18,
+          color: Color(0xFF1D364D),
+        )));
 
 //0xFFD4E1FF
 //#1d364d
@@ -45,34 +49,7 @@ class HomePage extends StatelessWidget {
         preferredSize: Size.fromHeight(105.0), // Set the desired height
         child: CustomAppBar(),
       ),
-      body: const HomePageBody(),
-      /*body: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(10.0),
-                      topRight: Radius.circular(10.0),
-                    ),
-                    child: Container(
-                        width: double.maxFinite,
-                        height: 60,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: Color(0x66000000),
-                          border: Border(
-                              bottom:
-                                  BorderSide(color: Colors.black38, width: 2)),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(20),
-                          child: Text('Compulsory tasks.'),
-                        )))
-              ],
-            ))*/
+      body: const HomePage1(),
     );
   }
 }

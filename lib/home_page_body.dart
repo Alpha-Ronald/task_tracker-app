@@ -48,7 +48,51 @@ class HomePageBody extends StatelessWidget {
                               )
                             ]))))
           ],
-        )
+        ),
+        const SizedBox(
+          height: 6,
+        ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: Container(
+            width: double.maxFinite,
+            height: 60,
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '5 daily prayers',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 4,
+        ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: Container(
+            width: double.maxFinite,
+            height: 60,
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Daily Thanksgiving',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
