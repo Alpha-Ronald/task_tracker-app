@@ -28,7 +28,7 @@ class HabitsWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Compulsory tasks.',
+                            'HabitHarbor',
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           const Icon(

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 class HabitsTile extends StatelessWidget {
-  HabitsTile(
-      {super.key,
-      required this.taskName,
-      required this.taskComleted,
-      required Null Function() onChanged});
+  const HabitsTile({
+    super.key,
+    required this.taskName,
+    required this.taskCompleted,
+    required this.onChanged,
+  });
 
   final String taskName;
-  final bool taskComleted;
-  Function(bool?)? onChanged;
+  final bool taskCompleted;
+  final void Function(bool?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,14 @@ class HabitsTile extends StatelessWidget {
                 children: [
                   Text(
                     taskName,
-                    style: Theme.of(context).textTheme.displaySmall,
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          decoration: taskCompleted
+                              ? TextDecoration.lineThrough
+                              : TextDecoration.none,
+                        ),
                   ),
                   Checkbox(
-                    value: taskComleted,
+                    value: taskCompleted,
                     onChanged: onChanged,
                     activeColor: const Color(0xFF1D364D),
                     shape: const CircleBorder(),
