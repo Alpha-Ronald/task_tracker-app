@@ -57,8 +57,9 @@ class HomePageBody extends StatelessWidget {
           child: Container(
             width: double.maxFinite,
             height: 60,
+            decoration: const BoxDecoration(shape: BoxShape.rectangle),
             child: Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -79,8 +80,9 @@ class HomePageBody extends StatelessWidget {
           child: Container(
             width: double.maxFinite,
             height: 60,
+            decoration: const BoxDecoration(shape: BoxShape.rectangle),
             child: Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
