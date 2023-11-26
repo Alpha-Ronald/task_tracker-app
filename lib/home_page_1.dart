@@ -12,8 +12,8 @@ class HomePage1 extends StatefulWidget {
 class HomePage1State extends State<HomePage1> {
   @override
   Widget build(BuildContext context) {
-    return ListView(children: const [
-      Column(children: [
+    return ListView(children: [
+      const Column(children: [
         Column(
           children: [
             HabitsWidget(),
@@ -30,6 +30,23 @@ class HomePage1State extends State<HomePage1> {
           ],
         )
       ]),
+      const SizedBox(
+        height: 50,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              onPressed: () {},
+              backgroundColor: const Color(0xFF1D364D),
+              //tooltip: 'Increment',
+              child: const Icon(Icons.add),
+            ),
+          ],
+        ),
+      ),
     ]);
   }
 }
