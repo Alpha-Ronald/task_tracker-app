@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'custom_appbars.dart';
 import 'home_page_1.dart';
 
 void main() {
@@ -33,6 +34,10 @@ final ThemeData customTheme = ThemeData(
         displaySmall: TextStyle(
           fontSize: 18,
           color: Color(0xFF1D364D),
+        ),
+        headlineMedium: TextStyle(
+          fontSize: 20,
+          color: Colors.white,
         )));
 
 //0xFFD4E1FF
@@ -47,57 +52,9 @@ class HomePage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(105.0), // Set the desired height
-        child: CustomAppBar(),
+        child: CustomAppBar1(),
       ),
       body: const HomePage1(),
-    );
-  }
-}
-
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-      flexibleSpace:
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Today.',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              Row(
-                children: [
-                  Text('22 November 2023',
-                      style: Theme.of(context).textTheme.titleMedium),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.arrow_drop_down_circle_rounded,
-                        color: Colors.white,
-                      ))
-                ],
-              )
-            ],
-          ),
-        ),
-        Padding(
-            padding: const EdgeInsets.all(10),
-            child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                  size: 29,
-                )))
-      ]),
     );
   }
 }
