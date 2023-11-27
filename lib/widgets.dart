@@ -28,7 +28,7 @@ class HabitsWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'HabitHarbor',
+                            'HabitHarbor.',
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           const Icon(
@@ -67,7 +67,7 @@ class ToDoWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'To-DO list',
+                            'To-DO list.',
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           /*const Icon(
@@ -76,5 +76,23 @@ class ToDoWidget extends StatelessWidget {
                             size: 20,
                           )*/
                         ])))));
+  }
+}
+
+class TextField1 extends StatelessWidget {
+  const TextField1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const TextField(
+      decoration: InputDecoration(
+          hintText: 'Enter a title...',
+          hintStyle: TextStyle(fontSize: 40, color: Colors.black26),
+          //focusColor: Color(0xFF1D364D),
+          border: InputBorder.none),
+      cursorHeight: 40,
+      cursorColor: Color(0xFF1D364D),
+      style: TextStyle(color: Colors.black, fontSize: 40),
+    );
   }
 }

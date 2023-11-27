@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'buttons.dart';
 import 'custom_appbars.dart';
 import 'home_page_1.dart';
 
@@ -25,8 +26,8 @@ final ThemeData customTheme = ThemeData(
         .copyWith(background: const Color(0xFFD4E1FF)),
     appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF1D364D)),
     textTheme: const TextTheme(
-        titleMedium: TextStyle(fontSize: 18, color: Colors.white),
-        titleLarge: TextStyle(fontSize: 22, color: Colors.white),
+        titleMedium: TextStyle(fontSize: 18, color: Colors.white70),
+        titleLarge: TextStyle(fontSize: 22, color: Colors.white70),
         headlineSmall: TextStyle(
             fontSize: 18,
             color: Color(0xFF1D364D),
@@ -36,7 +37,7 @@ final ThemeData customTheme = ThemeData(
           color: Color(0xFF1D364D),
         ),
         headlineMedium: TextStyle(
-          fontSize: 20,
+          fontSize: 22,
           color: Colors.white,
         )));
 
@@ -49,12 +50,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(105.0), // Set the desired height
-        child: CustomAppBar1(),
-      ),
-      body: const HomePage1(),
-    );
+        backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(105.0), // Set the desired height
+          child: CustomAppBar1(),
+        ),
+        body: const HomePage1(),
+        floatingActionButton: const AddNewButton());
   }
 }

@@ -27,7 +27,7 @@ class CustomAppBar1 extends StatelessWidget {
                       onPressed: () {},
                       icon: const Icon(
                         Icons.arrow_drop_down_circle_rounded,
-                        color: Colors.white,
+                        color: Colors.white70,
                       ))
                 ],
               )
@@ -40,7 +40,7 @@ class CustomAppBar1 extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.settings,
-                  color: Colors.white,
+                  color: Colors.white70,
                   size: 29,
                 )))
       ]),
@@ -54,18 +54,33 @@ class CustomAppBar2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        flexibleSpace: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Row(
-            children: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
-              Text(
-                'Create a new habit',
-                style: Theme.of(context).textTheme.headlineMedium,
-                textAlign: TextAlign.center,
-              ),
-            ],
+        flexibleSpace: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15, top: 20),
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    size: 32,
+                  ),
+                  color: Colors.white70,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    'Create a new habit',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
           ),
         ));
   }
