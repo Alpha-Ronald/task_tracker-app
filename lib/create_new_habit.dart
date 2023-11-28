@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tryout/custom_appbars.dart';
 
 import 'buttons_and_checkboxes.dart';
+import 'conditional_activation.dart';
 
 class CreateNewHabit extends StatelessWidget {
   const CreateNewHabit({super.key});
@@ -9,7 +10,10 @@ class CreateNewHabit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme
+          .of(context)
+          .colorScheme
+          .background,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(90), // Set the desired height
         child: CustomAppBar2(),
@@ -27,23 +31,52 @@ class CreateNewHabitBody extends StatefulWidget {
 }
 
 class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
+  final controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      children: const [
-        Padding(
+      children: [
+        const Padding(
           padding: EdgeInsets.all(20),
           child: Column(
             children: [
-              TextField1(),
+              TextField1(
+                //controller: controller,
+              ),
               SizedBox(
                 height: 40,
               ),
             ],
           ),
         ),
-        TaskFrequency(),
+        const TaskFrequency(),
+        const SizedBox(
+          height: 15,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+                onTap: () {},
+                splashColor: const Color(0xFF1D364D),
+                child: Container(
+                  height: 60,
+                  width: 165,
+                  decoration: BoxDecoration(
+                      color: const Color(0xFF1D364D),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                      child: Text('Create goal',
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .displaySmall
+                              ?.copyWith(color: Colors.white70))),
+                ))
+          ],
+        )
       ],
     );
   }
@@ -55,6 +88,7 @@ class TextField1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const TextField(
+      // controller: TextEditingController(),
       decoration: InputDecoration(
           hintText: 'Enter a title...',
           hintStyle: TextStyle(fontSize: 40, color: Colors.black26),
@@ -93,7 +127,8 @@ class TaskFrequencyState extends State<TaskFrequency> {
               children: [
                 Text(
                   'How often do you want to reach this goal?',
-                  style: Theme.of(context)
+                  style: Theme
+                      .of(context)
                       .textTheme
                       .headlineSmall!
                       .copyWith(fontSize: 16),
@@ -121,7 +156,10 @@ class TaskFrequencyState extends State<TaskFrequency> {
                     ),
                     Text(
                       'Once',
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .displaySmall,
                     )
                   ],
                 ),
@@ -148,7 +186,10 @@ class TaskFrequencyState extends State<TaskFrequency> {
                     ),
                     Text(
                       'Every day',
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .displaySmall,
                     )
                   ],
                 ),
@@ -175,7 +216,10 @@ class TaskFrequencyState extends State<TaskFrequency> {
                     ),
                     Text(
                       'Some days in the week',
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .displaySmall,
                     )
                   ],
                 ),
@@ -202,7 +246,10 @@ class TaskFrequencyState extends State<TaskFrequency> {
                     ),
                     Text(
                       'Repeat',
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .displaySmall,
                     )
                   ],
                 ),
@@ -229,166 +276,75 @@ class TaskFrequencyState extends State<TaskFrequency> {
                     }
                   },
                   fillColor:
-                      MaterialStateProperty.all(const Color(0xFF1D364D))),
+                  MaterialStateProperty.all(const Color(0xFF1D364D))),
               Text('Set a reminder',
-                  style: Theme.of(context).textTheme.displaySmall)
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .displaySmall)
             ],
           ),
         ),
-        const SizedBox(
-          height: 15,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 60,
-              width: 165,
-              decoration: BoxDecoration(
-                  color: const Color(0xFF1D364D),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Center(
-                  child: Text('Create goal',
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(color: Colors.white70))),
-            )
-          ],
-        )
+        if (onChecked)
+          Visibility(
+            visible: onChecked,
+            child: const SetReminder(),
+          ),
       ],
     );
   }
 }
 
-class RepeatConditionalActivationWidget extends StatefulWidget {
-  const RepeatConditionalActivationWidget(
-      {super.key, required this.repeatCheckBoxValue});
+class SetReminder extends StatelessWidget {
+  const SetReminder({super.key});
 
-  final bool repeatCheckBoxValue; //calling the repeatCheckBoxValue value
-
-  @override
-  State<RepeatConditionalActivationWidget> createState() =>
-      RepeatConditionalActivationWidgetState();
-}
-
-class RepeatConditionalActivationWidgetState
-    extends State<RepeatConditionalActivationWidget> {
   @override
   Widget build(BuildContext context) {
-    //Text conditional activation colors
-    Color textColor = widget.repeatCheckBoxValue
-        ? const Color(0xFF1D364D)
-        : const Color(0xFF1D364D).withOpacity(0.2);
-    //Start Date conditional activation colors
-    Color startDateInsideContainerColor = widget.repeatCheckBoxValue
-        ? Colors.green.withOpacity(0.2)
-        : const Color(0Xffe1f2ed).withOpacity(0.2);
-    Color startDateContainerBorderColor = widget.repeatCheckBoxValue
-        ? Colors.green
-        : Colors.green.withOpacity(0.2);
-
-    //End Date conditional activation colors
-    Color endDateColor = widget.repeatCheckBoxValue
-        ? Colors.red.withOpacity(0.2)
-        : Colors.red.withOpacity(0.05);
-    Color endDateContainerBorderColor =
-        widget.repeatCheckBoxValue ? Colors.red : Colors.red.withOpacity(0.2);
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'When do you want to reach this goal?',
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall!
-              .copyWith(fontSize: 16, color: textColor),
-        ),
-        const SizedBox(
-          height: 25,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Start date:',
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(color: textColor),
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Row(
+        children: [
+          Container(
+            height: 70,
+            width: 120,
+            decoration: BoxDecoration(
+                color: Colors.black12, borderRadius: BorderRadius.circular(10)),
+            child: const Center(
+              child: TextField(
+                cursorColor: Color(0xFF1D364D),
+                style: TextStyle(color: Color(0xFF1D364D), fontSize: 35),
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(border: InputBorder.none),
+              ),
             ),
-            Container(
-                height: 50,
-                width: 110,
-                decoration: BoxDecoration(
-                    color: startDateInsideContainerColor,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 1,
-                      color: startDateContainerBorderColor,
-                    )),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Today',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(fontSize: 16, color: textColor)),
-                        const Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 15,
-                        )
-                      ]),
-                ))
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'End date:',
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(color: textColor),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          const Text(
+            ':',
+            style: TextStyle(fontSize: 45),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Container(
+            height: 70,
+            width: 120,
+            decoration: BoxDecoration(
+                color: Colors.black12, borderRadius: BorderRadius.circular(10)),
+            child: const Center(
+              child: TextField(
+
+                cursorColor: Color(0xFF1D364D),
+                style: TextStyle(color: Color(0xFF1D364D), fontSize: 35),
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(border: InputBorder.none),
+              ),
             ),
-            Container(
-                height: 50,
-                width: 110,
-                decoration: BoxDecoration(
-                    color: endDateColor,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 1,
-                      color: endDateContainerBorderColor,
-                    )),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Today',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(fontSize: 16, color: textColor)),
-                        const Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 15,
-                        )
-                      ]),
-                ))
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }

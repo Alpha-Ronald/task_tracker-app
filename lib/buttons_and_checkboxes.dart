@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'page_create_new.dart';
+import 'create_new_habit.dart';
 
 class AddNewButton extends StatelessWidget {
   const AddNewButton({super.key});
