@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'buttons.dart';
+import 'buttons_and_checkboxes.dart';
 import 'custom_appbars.dart';
 import 'home_page_1.dart';
 

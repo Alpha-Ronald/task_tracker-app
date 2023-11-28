@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tryout/custom_appbars.dart';
 
+import 'buttons_and_checkboxes.dart';
+
 class CreateNewHabit extends StatelessWidget {
   const CreateNewHabit({super.key});
 
@@ -201,49 +203,111 @@ class TaskFrequencyState extends State<TaskFrequency> {
                 )
               ],
             ),
+            const SizedBox(
+              height: 65,
+            ),
+            RepeatWidget(),
           ]),
     );
   }
 }
 
-class CustomCheckBox extends StatefulWidget {
-  const CustomCheckBox(
-      {super.key, required this.value, required this.onChanged});
-
-  final bool value;
-  final ValueChanged<bool>? onChanged;
+class RepeatWidget extends StatefulWidget {
+  const RepeatWidget({super.key});
 
   @override
-  State<CustomCheckBox> createState() => CustomCheckBoxState();
+  State<RepeatWidget> createState() => RepeatWidgetState();
 }
 
-class CustomCheckBoxState extends State<CustomCheckBox> {
+class RepeatWidgetState extends State<RepeatWidget> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (widget.onChanged != null) {
-          widget.onChanged!(!widget.value);
-        }
-      },
-      child: Container(
-        width: 22.0, // Set your preferred size
-        height: 22.0,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: const Color(0xFF1D364D), // Set the border color
-            width: 2.0, // Set the border width
-          ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'When do you want to reach this goal?',
+          style:
+              Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 16),
         ),
-        child: widget.value
-            ? const Icon(
-                Icons.circle,
-                size: 14.0, // Set the check icon size
-                color: Color(0xFF1D364D), // Set the check icon color
-              )
-            : Container(), // Empty container when not checked
-      ),
+        const SizedBox(
+          height: 25,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Start date:',
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+            Container(
+                height: 50,
+                width: 110,
+                decoration: BoxDecoration(
+                    color: Colors.greenAccent.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.green,
+                    )),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Today',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall!
+                                .copyWith(fontSize: 16)),
+                        const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 15,
+                        )
+                      ]),
+                ))
+          ],
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'End date:',
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+            Container(
+                height: 50,
+                width: 110,
+                decoration: BoxDecoration(
+                    color: Colors.redAccent.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.red,
+                    )),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Today',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall!
+                                .copyWith(fontSize: 16)),
+                        const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 15,
+                        )
+                      ]),
+                ))
+          ],
+        ),
+      ],
     );
   }
 }
