@@ -79,151 +79,201 @@ class TaskFrequencyState extends State<TaskFrequency> {
   bool everydayCheckBoxValue = false;
   bool someDaysCheckBoxValue = false;
   bool repeatCheckBoxValue = false;
+  bool onChecked = false;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'How often do you want to reach this goal?',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall!
+                      .copyWith(fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: CustomCheckBox(
+                        value: onceCheckBoxValue,
+                        onChanged: (bool newValue) {
+                          setState(() {
+                            onceCheckBoxValue = newValue;
+                            if (newValue) {
+                              everydayCheckBoxValue = false;
+                              someDaysCheckBoxValue = false;
+                              repeatCheckBoxValue = false;
+                            }
+                          });
+                        },
+                      ),
+                    ),
+                    Text(
+                      'Once',
+                      style: Theme.of(context).textTheme.displaySmall,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: CustomCheckBox(
+                        value: everydayCheckBoxValue,
+                        onChanged: (bool newValue) {
+                          setState(() {
+                            everydayCheckBoxValue = newValue;
+                            if (newValue) {
+                              onceCheckBoxValue = false;
+                              someDaysCheckBoxValue = false;
+                              repeatCheckBoxValue = false;
+                            }
+                          });
+                        },
+                      ),
+                    ),
+                    Text(
+                      'Every day',
+                      style: Theme.of(context).textTheme.displaySmall,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: CustomCheckBox(
+                        value: someDaysCheckBoxValue,
+                        onChanged: (bool newValue) {
+                          setState(() {
+                            someDaysCheckBoxValue = newValue;
+                            if (newValue) {
+                              everydayCheckBoxValue = false;
+                              onceCheckBoxValue = false;
+                              repeatCheckBoxValue = false;
+                            }
+                          });
+                        },
+                      ),
+                    ),
+                    Text(
+                      'Some days in the week',
+                      style: Theme.of(context).textTheme.displaySmall,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: CustomCheckBox(
+                        value: repeatCheckBoxValue,
+                        onChanged: (bool newValue) {
+                          setState(() {
+                            repeatCheckBoxValue = newValue;
+                            if (newValue) {
+                              everydayCheckBoxValue = false;
+                              onceCheckBoxValue = false;
+                              someDaysCheckBoxValue = false;
+                            }
+                          });
+                        },
+                      ),
+                    ),
+                    Text(
+                      'Repeat',
+                      style: Theme.of(context).textTheme.displaySmall,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                RepeatConditionalActivationWidget(
+                  repeatCheckBoxValue: repeatCheckBoxValue,
+                ),
+              ]),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Row(
+            children: [
+              Checkbox(
+                  activeColor: const Color(0xFF1D364D),
+                  value: onChecked,
+                  onChanged: (bool? newValue) {
+                    if (newValue != null) {
+                      setState(() {
+                        onChecked = newValue;
+                      });
+                    }
+                  },
+                  fillColor:
+                      MaterialStateProperty.all(const Color(0xFF1D364D))),
+              Text('Set a reminder',
+                  style: Theme.of(context).textTheme.displaySmall)
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'How often do you want to reach this goal?',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .copyWith(fontSize: 16),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: CustomCheckBox(
-                    value: onceCheckBoxValue,
-                    onChanged: (bool newValue) {
-                      setState(() {
-                        onceCheckBoxValue = newValue;
-                        if (newValue) {
-                          everydayCheckBoxValue = false;
-                          someDaysCheckBoxValue = false;
-                          repeatCheckBoxValue = false;
-                        }
-                      });
-                    },
-                  ),
-                ),
-                Text(
-                  'Once',
-                  style: Theme.of(context).textTheme.displaySmall,
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: CustomCheckBox(
-                    value: everydayCheckBoxValue,
-                    onChanged: (bool newValue) {
-                      setState(() {
-                        everydayCheckBoxValue = newValue;
-                        if (newValue) {
-                          onceCheckBoxValue = false;
-                          someDaysCheckBoxValue = false;
-                          repeatCheckBoxValue = false;
-                        }
-                      });
-                    },
-                  ),
-                ),
-                Text(
-                  'Every day',
-                  style: Theme.of(context).textTheme.displaySmall,
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: CustomCheckBox(
-                    value: someDaysCheckBoxValue,
-                    onChanged: (bool newValue) {
-                      setState(() {
-                        someDaysCheckBoxValue = newValue;
-                        if (newValue) {
-                          everydayCheckBoxValue = false;
-                          onceCheckBoxValue = false;
-                          repeatCheckBoxValue = false;
-                        }
-                      });
-                    },
-                  ),
-                ),
-                Text(
-                  'Some days in the week',
-                  style: Theme.of(context).textTheme.displaySmall,
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: CustomCheckBox(
-                    value: repeatCheckBoxValue,
-                    onChanged: (bool newValue) {
-                      setState(() {
-                        repeatCheckBoxValue = newValue;
-                        if (newValue) {
-                          everydayCheckBoxValue = false;
-                          onceCheckBoxValue = false;
-                          someDaysCheckBoxValue = false;
-                        }
-                      });
-                    },
-                  ),
-                ),
-                Text(
-                  'Repeat',
-                  style: Theme.of(context).textTheme.displaySmall,
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 65,
-            ),
-            RepeatWidget(
-              repeatCheckBoxValue: repeatCheckBoxValue,
-            ),
-          ]),
+            Container(
+              height: 60,
+              width: 165,
+              decoration: BoxDecoration(
+                  color: const Color(0xFF1D364D),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Center(
+                  child: Text('Create goal',
+                      style: Theme.of(context)
+                          .textTheme
+                          .displaySmall
+                          ?.copyWith(color: Colors.white70))),
+            )
+          ],
+        )
+      ],
     );
   }
 }
 
-class RepeatWidget extends StatefulWidget {
-  const RepeatWidget({super.key, required this.repeatCheckBoxValue});
+class RepeatConditionalActivationWidget extends StatefulWidget {
+  const RepeatConditionalActivationWidget(
+      {super.key, required this.repeatCheckBoxValue});
 
-  final bool repeatCheckBoxValue; //calling the repeatcheckboxvalue value
+  final bool repeatCheckBoxValue; //calling the repeatCheckBoxValue value
 
   @override
-  State<RepeatWidget> createState() => RepeatWidgetState();
+  State<RepeatConditionalActivationWidget> createState() =>
+      RepeatConditionalActivationWidgetState();
 }
 
-class RepeatWidgetState extends State<RepeatWidget> {
+class RepeatConditionalActivationWidgetState
+    extends State<RepeatConditionalActivationWidget> {
   @override
   Widget build(BuildContext context) {
     //Text conditional activation colors
@@ -298,7 +348,7 @@ class RepeatWidgetState extends State<RepeatWidget> {
           ],
         ),
         const SizedBox(
-          height: 25,
+          height: 20,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
