@@ -206,14 +206,18 @@ class TaskFrequencyState extends State<TaskFrequency> {
             const SizedBox(
               height: 65,
             ),
-            RepeatWidget(),
+            RepeatWidget(
+              repeatCheckBoxValue: repeatCheckBoxValue,
+            ),
           ]),
     );
   }
 }
 
 class RepeatWidget extends StatefulWidget {
-  const RepeatWidget({super.key});
+  const RepeatWidget({super.key, required this.repeatCheckBoxValue});
+
+  final bool repeatCheckBoxValue; //calling the repeatcheckboxvalue value
 
   @override
   State<RepeatWidget> createState() => RepeatWidgetState();
@@ -222,14 +226,35 @@ class RepeatWidget extends StatefulWidget {
 class RepeatWidgetState extends State<RepeatWidget> {
   @override
   Widget build(BuildContext context) {
+    //Text conditional activation colors
+    Color textColor = widget.repeatCheckBoxValue
+        ? const Color(0xFF1D364D)
+        : const Color(0xFF1D364D).withOpacity(0.2);
+    //Start Date conditional activation colors
+    Color startDateInsideContainerColor = widget.repeatCheckBoxValue
+        ? Colors.green.withOpacity(0.2)
+        : const Color(0Xffe1f2ed).withOpacity(0.2);
+    Color startDateContainerBorderColor = widget.repeatCheckBoxValue
+        ? Colors.green
+        : Colors.green.withOpacity(0.2);
+
+    //End Date conditional activation colors
+    Color endDateColor = widget.repeatCheckBoxValue
+        ? Colors.red.withOpacity(0.2)
+        : Colors.red.withOpacity(0.05);
+    Color endDateContainerBorderColor =
+        widget.repeatCheckBoxValue ? Colors.red : Colors.red.withOpacity(0.2);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'When do you want to reach this goal?',
-          style:
-              Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 16),
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall!
+              .copyWith(fontSize: 16, color: textColor),
         ),
         const SizedBox(
           height: 25,
@@ -239,17 +264,20 @@ class RepeatWidgetState extends State<RepeatWidget> {
           children: [
             Text(
               'Start date:',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context)
+                  .textTheme
+                  .displaySmall
+                  ?.copyWith(color: textColor),
             ),
             Container(
                 height: 50,
                 width: 110,
                 decoration: BoxDecoration(
-                    color: Colors.greenAccent.withOpacity(0.2),
+                    color: startDateInsideContainerColor,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
                       width: 1,
-                      color: Colors.green,
+                      color: startDateContainerBorderColor,
                     )),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -260,7 +288,7 @@ class RepeatWidgetState extends State<RepeatWidget> {
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall!
-                                .copyWith(fontSize: 16)),
+                                .copyWith(fontSize: 16, color: textColor)),
                         const Icon(
                           Icons.arrow_forward_ios_rounded,
                           size: 15,
@@ -277,17 +305,20 @@ class RepeatWidgetState extends State<RepeatWidget> {
           children: [
             Text(
               'End date:',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context)
+                  .textTheme
+                  .displaySmall
+                  ?.copyWith(color: textColor),
             ),
             Container(
                 height: 50,
                 width: 110,
                 decoration: BoxDecoration(
-                    color: Colors.redAccent.withOpacity(0.2),
+                    color: endDateColor,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
                       width: 1,
-                      color: Colors.red,
+                      color: endDateContainerBorderColor,
                     )),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -298,7 +329,7 @@ class RepeatWidgetState extends State<RepeatWidget> {
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall!
-                                .copyWith(fontSize: 16)),
+                                .copyWith(fontSize: 16, color: textColor)),
                         const Icon(
                           Icons.arrow_forward_ios_rounded,
                           size: 15,

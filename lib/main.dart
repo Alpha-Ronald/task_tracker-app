@@ -41,9 +41,11 @@ final ThemeData customTheme = ThemeData(
           color: Colors.white,
         )));
 
-//0xFFD4E1FF
+//0xFF D4E1FF
 //#1d364d
-//0xFF1D364D
+//0xFF 1D364D
+//0xFFD2FAED
+//d2faed
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
