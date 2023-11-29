@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tryout/provider_sm.dart';
 
 import 'buttons_and_checkboxes.dart';
 import 'custom_appbars.dart';
 import 'home_page_1.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => TaskModel(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

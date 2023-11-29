@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tryout/custom_appbars.dart';
+import 'package:tryout/provider_sm.dart';
 
 import 'buttons_and_checkboxes.dart';
 import 'conditional_activation.dart';
@@ -10,10 +12,7 @@ class CreateNewHabit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme
-          .of(context)
-          .colorScheme
-          .background,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(90), // Set the desired height
         child: CustomAppBar2(),
@@ -35,17 +34,18 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
 
   @override
   Widget build(BuildContext context) {
+    var taskModel = Provider.of<TaskModel>(context);
     return ListView(
       shrinkWrap: true,
       children: [
-        const Padding(
-          padding: EdgeInsets.all(20),
+        Padding(
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               TextField1(
-                //controller: controller,
+                controller: controller,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
             ],
@@ -59,7 +59,13 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
-                onTap: () {},
+                onTap: () {
+                  String newTask = controller.text;
+                  if (newTask.isNotEmpty) {
+                    taskModel.addTask(newTask, false);
+                    controller.clear();
+                  }
+                },
                 splashColor: const Color(0xFF1D364D),
                 child: Container(
                   height: 60,
@@ -69,8 +75,7 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
                       borderRadius: BorderRadius.circular(10)),
                   child: Center(
                       child: Text('Create goal',
-                          style: Theme
-                              .of(context)
+                          style: Theme.of(context)
                               .textTheme
                               .displaySmall
                               ?.copyWith(color: Colors.white70))),
@@ -83,20 +88,22 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
 }
 
 class TextField1 extends StatelessWidget {
-  const TextField1({super.key});
+  TextField1({super.key, required TextEditingController controller});
+
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return const TextField(
-      // controller: TextEditingController(),
-      decoration: InputDecoration(
+    return TextField(
+      controller: controller,
+      decoration: const InputDecoration(
           hintText: 'Enter a title...',
           hintStyle: TextStyle(fontSize: 40, color: Colors.black26),
           //focusColor: Color(0xFF1D364D),
           border: InputBorder.none),
       cursorHeight: 40,
-      cursorColor: Color(0xFF1D364D),
-      style: TextStyle(color: Colors.black, fontSize: 40),
+      cursorColor: const Color(0xFF1D364D),
+      style: const TextStyle(color: Colors.black, fontSize: 40),
     );
   }
 }
@@ -127,8 +134,7 @@ class TaskFrequencyState extends State<TaskFrequency> {
               children: [
                 Text(
                   'How often do you want to reach this goal?',
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .headlineSmall!
                       .copyWith(fontSize: 16),
@@ -156,10 +162,7 @@ class TaskFrequencyState extends State<TaskFrequency> {
                     ),
                     Text(
                       'Once',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .displaySmall,
+                      style: Theme.of(context).textTheme.displaySmall,
                     )
                   ],
                 ),
@@ -186,10 +189,7 @@ class TaskFrequencyState extends State<TaskFrequency> {
                     ),
                     Text(
                       'Every day',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .displaySmall,
+                      style: Theme.of(context).textTheme.displaySmall,
                     )
                   ],
                 ),
@@ -216,10 +216,7 @@ class TaskFrequencyState extends State<TaskFrequency> {
                     ),
                     Text(
                       'Some days in the week',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .displaySmall,
+                      style: Theme.of(context).textTheme.displaySmall,
                     )
                   ],
                 ),
@@ -246,10 +243,7 @@ class TaskFrequencyState extends State<TaskFrequency> {
                     ),
                     Text(
                       'Repeat',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .displaySmall,
+                      style: Theme.of(context).textTheme.displaySmall,
                     )
                   ],
                 ),
@@ -276,12 +270,9 @@ class TaskFrequencyState extends State<TaskFrequency> {
                     }
                   },
                   fillColor:
-                  MaterialStateProperty.all(const Color(0xFF1D364D))),
+                      MaterialStateProperty.all(const Color(0xFF1D364D))),
               Text('Set a reminder',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .displaySmall)
+                  style: Theme.of(context).textTheme.displaySmall)
             ],
           ),
         ),
@@ -335,7 +326,6 @@ class SetReminder extends StatelessWidget {
                 color: Colors.black12, borderRadius: BorderRadius.circular(10)),
             child: const Center(
               child: TextField(
-
                 cursorColor: Color(0xFF1D364D),
                 style: TextStyle(color: Color(0xFF1D364D), fontSize: 35),
                 textAlign: TextAlign.center,

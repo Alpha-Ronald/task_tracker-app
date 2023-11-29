@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tryout/provider_sm.dart';
 
 class HabitsTile extends StatelessWidget {
   const HabitsTile({
@@ -14,43 +16,48 @@ class HabitsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.fromLTRB(20, 2, 20, 0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(5),
-          child: Container(
-            width: double.maxFinite,
-            height: 60,
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              color: Colors.black12.withOpacity(0.05),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    habitTaskName,
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          decoration: habitTaskCompleted
-                              ? TextDecoration.lineThrough
-                              : TextDecoration.none,
-                        ),
-                  ),
-                  Checkbox(
-                    value: habitTaskCompleted,
-                    onChanged: onChanged,
-                    activeColor: const Color(0xFF1D364D),
-                    shape: const CircleBorder(),
-                    fillColor:
-                        MaterialStateProperty.all(const Color(0xFF1D364D)),
-                  )
-                ],
+    return Consumer<TaskModel>(builder: (context, taskModel, child) {
+      return Padding(
+          padding: const EdgeInsets.fromLTRB(20, 2, 20, 0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(5),
+            child: Container(
+              width: double.maxFinite,
+              height: 60,
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.black12.withOpacity(0.05),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      habitTaskName,
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            decoration: habitTaskCompleted
+                                ? TextDecoration.lineThrough
+                                : TextDecoration.none,
+                          ),
+                    ),
+                    Checkbox(
+                      value: habitTaskCompleted,
+                      onChanged: (value) {
+                        taskModel.habitsListCheckBoxChanged(
+                            value, habitTaskName);
+                      },
+                      activeColor: const Color(0xFF1D364D),
+                      shape: const CircleBorder(),
+                      fillColor:
+                          MaterialStateProperty.all(const Color(0xFF1D364D)),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ));
+          ));
+    });
   }
 }
 

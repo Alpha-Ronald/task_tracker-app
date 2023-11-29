@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tryout/provider_sm.dart';
 import 'package:tryout/tiles.dart';
 
 class HabitsWidget extends StatelessWidget {
@@ -83,30 +85,21 @@ class BuildListView1 extends StatefulWidget {
 }
 
 class BuildListView1State extends State<BuildListView1> {
-  List habitsList = [
-    ['5 prayers daily', false],
-    ['Do exercise', false],
-    ['2 hours coding', false],
-  ];
-
 //checkbox tapped
-  void habitsListCheckBoxChanged(bool? value, int index) {
-    setState(() {
-      habitsList[index][1] = !habitsList[index][1];
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    var taskModel = Provider.of<TaskModel>(context);
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: habitsList.length,
+      itemCount: taskModel.habitsList.length,
       itemBuilder: (context, index) {
         return HabitsTile(
-            habitTaskName: habitsList[index][0],
-            habitTaskCompleted: habitsList[index][1],
-            onChanged: (value) => habitsListCheckBoxChanged(value, index));
+            habitTaskName: taskModel.habitsList[index].name,
+            habitTaskCompleted: taskModel.habitsList[index].completed,
+            onChanged: (value) => taskModel.habitsListCheckBoxChanged(
+                value, taskModel.habitsList[index].name));
       },
     );
   }
