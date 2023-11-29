@@ -87,12 +87,6 @@ class BuildListView1State extends State<BuildListView1> {
     ['5 prayers daily', false],
     ['Do exercise', false],
     ['2 hours coding', false],
-    ['5 prayers daily', false],
-    ['Do exercise', false],
-    ['Do exercise', false],
-    ['5 prayers daily', false],
-    ['Do exercise', false],
-    ['Do exercise', false],
   ];
 
 //checkbox tapped
