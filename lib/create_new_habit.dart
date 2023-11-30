@@ -15,7 +15,9 @@ class CreateNewHabit extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(90), // Set the desired height
-        child: CustomAppBar2(),
+        child: CustomAppBar2(
+          title: 'Create a new habit',
+        ),
       ),
       body: const CreateNewHabitBody(),
     );

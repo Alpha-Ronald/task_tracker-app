@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tryout/provider_sm.dart';
 
-import 'buttons_and_checkboxes.dart';
-import 'custom_appbars.dart';
-import 'home_page_1.dart';
+import 'home_page.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -49,18 +47,3 @@ final ThemeData customTheme = ThemeData(
 //0xFF 1D364D
 //0xFFD2FAED
 //d2faed
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(105.0), // Set the desired height
-          child: CustomAppBar1(),
-        ),
-        body: const HomePage1(),
-        floatingActionButton: const AddNewButton());
-  }
-}

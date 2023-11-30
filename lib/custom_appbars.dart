@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tryout/settings_page.dart';
 
 class CustomAppBar1 extends StatelessWidget {
   const CustomAppBar1({super.key});
@@ -37,7 +38,13 @@ class CustomAppBar1 extends StatelessWidget {
         Padding(
             padding: const EdgeInsets.all(10),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Settings()));
+                },
+                splashColor: const Color(0xFF1D364D),
                 icon: const Icon(
                   Icons.settings,
                   color: Colors.white70,
@@ -49,7 +56,9 @@ class CustomAppBar1 extends StatelessWidget {
 }
 
 class CustomAppBar2 extends StatelessWidget {
-  const CustomAppBar2({super.key});
+  const CustomAppBar2({super.key, required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +83,7 @@ class CustomAppBar2 extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Text(
-                    'Create a new habit',
+                    title,
                     style: Theme.of(context).textTheme.headlineMedium,
                     textAlign: TextAlign.center,
                   ),

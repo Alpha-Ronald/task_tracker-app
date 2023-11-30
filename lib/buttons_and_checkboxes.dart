@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'create_new_habit.dart';
 
-class AddNewButton extends StatelessWidget {
-  const AddNewButton({super.key});
+class HomePageAddButton extends StatelessWidget {
+  const HomePageAddButton({super.key});
 
   @override
   Widget build(BuildContext context) {
