@@ -95,6 +95,7 @@ class BuildListView1State extends State<BuildListView1> {
       shrinkWrap: true,
       itemCount: taskModel.habitsList.length,
       itemBuilder: (context, index) {
+        final taskModel = Provider.of<TaskModel>(context, listen: false);
         return HabitsTile(
             habitTaskName: taskModel.habitsList[index].name,
             habitTaskCompleted: taskModel.habitsList[index].completed,

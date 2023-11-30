@@ -34,63 +34,79 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
 
   @override
   Widget build(BuildContext context) {
-    var taskModel = Provider.of<TaskModel>(context);
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              TextField1(
-                controller: controller,
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-            ],
+    return Consumer<TaskModel>(builder: (context, taskModel, _) {
+      return ListView(
+        shrinkWrap: true,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                TextField1(
+                  controller: controller,
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+              ],
+            ),
           ),
-        ),
-        const TaskFrequency(),
-        const SizedBox(
-          height: 15,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
-                onTap: () {
-                  String newTask = controller.text;
-                  if (newTask.isNotEmpty) {
-                    taskModel.addTask(newTask, false);
-                    controller.clear();
-                  }
-                },
-                splashColor: const Color(0xFF1D364D),
-                child: Container(
-                  height: 60,
-                  width: 165,
-                  decoration: BoxDecoration(
-                      color: const Color(0xFF1D364D),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                      child: Text('Create goal',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(color: Colors.white70))),
-                ))
-          ],
-        )
-      ],
-    );
+          const TaskFrequency(),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                  onTap: () {
+                    final habitTaskName = controller.text;
+                    if (habitTaskName.isNotEmpty) {
+                      context.read<TaskModel>().addTask(habitTaskName, false);
+                      Navigator.pop(context);
+                      controller.clear();
+                    }
+                  },
+                  //{taskModel.addTask(habitTaskName, completed: )},
+                  /*onTap: () {
+                    String newTask = controller.text;
+                    if (newTask.isNotEmpty) {
+                      taskModel.addTask(newTask, false);
+                      controller.clear();
+                    }
+                    //
+                    if (context.mounted) {
+                      Navigator.pop(context);
+                    }
+                    //
+                  },*/
+                  splashColor: const Color(0xFF1D364D),
+                  child: Container(
+                    height: 60,
+                    width: 165,
+                    decoration: BoxDecoration(
+                        color: const Color(0xFF1D364D),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                        child: Text('Create goal',
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall
+                                ?.copyWith(color: Colors.white70))),
+                  ))
+            ],
+          )
+        ],
+      );
+    });
   }
 }
 
 class TextField1 extends StatelessWidget {
-  TextField1({super.key, required TextEditingController controller});
+  //TextField1({super.key, required TextEditingController controller});
+  const TextField1({Key? key, required this.controller}) : super(key: key);
 
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
