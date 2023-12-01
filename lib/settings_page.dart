@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tryout/edit_tasks_page.dart';
 
 import 'custom_appbars.dart';
 
@@ -18,8 +19,11 @@ class Settings extends StatelessWidget {
       body: Column(
         children: [
           SettingsOptions(
-            onTap: () {},
-            option: "My Habits and TO-DO's",
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const EditTasks()));
+            },
+            option: "My Habits and To-Do's",
             iconData: Icons.emoji_events_outlined,
           ),
           SettingsOptions(
