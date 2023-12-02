@@ -18,7 +18,7 @@ class Settings extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SettingsOptions(
+          SettingsOption(
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const EditTasks()));
@@ -26,7 +26,7 @@ class Settings extends StatelessWidget {
             option: "My Habits and To-Do's",
             iconData: Icons.emoji_events_outlined,
           ),
-          SettingsOptions(
+          SettingsOption(
             option: "Share this app",
             iconData: Icons.share_outlined,
             onTap: () {},
@@ -37,8 +37,8 @@ class Settings extends StatelessWidget {
   }
 }
 
-class SettingsOptions extends StatelessWidget {
-  const SettingsOptions(
+class SettingsOption extends StatelessWidget {
+  const SettingsOption(
       {super.key, required this.option, this.onTap, required this.iconData});
 
   final String option;

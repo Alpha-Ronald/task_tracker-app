@@ -5,7 +5,6 @@ class RepeatConditionalActivationWidget extends StatefulWidget {
       {super.key, required this.repeatCheckBoxValue});
 
   final bool repeatCheckBoxValue; //calling the repeatCheckBoxValue value
-
   @override
   State<RepeatConditionalActivationWidget> createState() =>
       RepeatConditionalActivationWidgetState();
