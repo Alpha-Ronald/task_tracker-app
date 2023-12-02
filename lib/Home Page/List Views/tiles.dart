@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tryout/provider_sm.dart';
+import 'package:tryout/State%20Management/provider_sm.dart';
 
 class HabitsTile extends StatelessWidget {
   const HabitsTile({
@@ -35,25 +35,20 @@ class HabitsTile extends StatelessWidget {
                   children: [
                     Text(
                       habitTaskName,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(
-                        decoration: habitTaskCompleted
-                            ? TextDecoration.lineThrough
-                            : TextDecoration.none,
-                      ),
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            decoration: habitTaskCompleted
+                                ? TextDecoration.lineThrough
+                                : TextDecoration.none,
+                          ),
                     ),
                     Checkbox(
                       value: habitTaskCompleted,
-                      onChanged: (value) =>
-                          taskModel.habitsListCheckBoxChanged(
-                              value, habitTaskName),
+                      onChanged: (value) => taskModel.habitsListCheckBoxChanged(
+                          value, habitTaskName),
                       activeColor: const Color(0xFF1D364D),
                       shape: const CircleBorder(),
                       fillColor:
-                      MaterialStateProperty.all(const Color(0xFF1D364D)),
+                          MaterialStateProperty.all(const Color(0xFF1D364D)),
                     )
                   ],
                 ),
@@ -69,10 +64,11 @@ class ToDoTaskTile extends StatelessWidget {
   final bool toDoTaskCompleted;
   final void Function(bool?)? onChanged;
 
-  const ToDoTaskTile({super.key,
-    required this.toDoTaskName,
-    required this.toDoTaskCompleted,
-    required this.onChanged});
+  const ToDoTaskTile(
+      {super.key,
+      required this.toDoTaskName,
+      required this.toDoTaskCompleted,
+      required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -94,15 +90,11 @@ class ToDoTaskTile extends StatelessWidget {
                 children: [
                   Text(
                     toDoTaskName,
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .displaySmall
-                        ?.copyWith(
-                      decoration: toDoTaskCompleted
-                          ? TextDecoration.lineThrough
-                          : TextDecoration.none,
-                    ),
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          decoration: toDoTaskCompleted
+                              ? TextDecoration.lineThrough
+                              : TextDecoration.none,
+                        ),
                   ),
                   Checkbox(
                     value: toDoTaskCompleted,
@@ -110,7 +102,7 @@ class ToDoTaskTile extends StatelessWidget {
                     activeColor: const Color(0xFF1D364D),
                     shape: const CircleBorder(),
                     fillColor:
-                    MaterialStateProperty.all(const Color(0xFF1D364D)),
+                        MaterialStateProperty.all(const Color(0xFF1D364D)),
                   )
                 ],
               ),

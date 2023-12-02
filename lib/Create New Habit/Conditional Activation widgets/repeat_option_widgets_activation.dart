@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-class RepeatConditionalActivationWidget extends StatefulWidget {
-  const RepeatConditionalActivationWidget(
-      {super.key, required this.repeatCheckBoxValue});
+class RepeatOptionActivation extends StatefulWidget {
+  const RepeatOptionActivation({super.key, required this.repeatCheckBoxValue});
 
   final bool repeatCheckBoxValue; //calling the repeatCheckBoxValue value
   @override
-  State<RepeatConditionalActivationWidget> createState() =>
-      RepeatConditionalActivationWidgetState();
+  State<RepeatOptionActivation> createState() => RepeatOptionActivationState();
 }
 
-class RepeatConditionalActivationWidgetState
-    extends State<RepeatConditionalActivationWidget> {
+class RepeatOptionActivationState extends State<RepeatOptionActivation> {
   @override
   Widget build(BuildContext context) {
     //Text conditional activation colors

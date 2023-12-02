@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'custom_appbars.dart';
+import '../custom_appbars.dart';
 
-class EditTasks extends StatefulWidget {
-  const EditTasks({super.key});
+class EditTasksPage extends StatefulWidget {
+  const EditTasksPage({super.key});
+
+
 
   @override
-  State<EditTasks> createState() => EditTasksState();
+  State<EditTasksPage> createState() => EditTasksPageState();
 }
 
-class EditTasksState extends State<EditTasks> {
+class EditTasksPageState extends State<EditTasksPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,15 +22,21 @@ class EditTasksState extends State<EditTasks> {
           title: "My Habits and To-Do's",
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(25),
+      body: Padding(
+        padding: const EdgeInsets.all(25),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                EditTaskOptions(taskOption: 'Habits'),
-                EditTaskOptions(taskOption: 'To-Do')
+                EditTaskOptions(
+                  taskOption: 'Habits',
+                  onSelected: () {},
+                ),
+                EditTaskOptions(
+                  taskOption: 'To-Do',
+                  onSelected: () {},
+                )
               ],
             )
           ],
@@ -39,9 +47,11 @@ class EditTasksState extends State<EditTasks> {
 }
 
 class EditTaskOptions extends StatelessWidget {
-  const EditTaskOptions({super.key, required this.taskOption});
+  const EditTaskOptions(
+      {super.key, required this.taskOption, required this.onSelected});
 
   final String taskOption;
+  final VoidCallback? onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +59,7 @@ class EditTaskOptions extends StatelessWidget {
       height: 70,
       width: 175,
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onSelected,
           style: ElevatedButton.styleFrom(
               elevation: 0,
               shape: RoundedRectangleBorder(

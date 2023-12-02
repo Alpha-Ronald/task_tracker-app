@@ -18,11 +18,6 @@ class TaskModel extends ChangeNotifier {
     task.completed = value ?? false;
     notifyListeners();
   }
-
-/*void habitsListCheckBoxChanged(bool? value, int index) {
-    habitsList[index].completed = value ?? false;
-    notifyListeners();
-  }*/
 }
 
 class Task {

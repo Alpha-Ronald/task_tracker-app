@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tryout/custom_homepage_widgets.dart';
+import 'package:tryout/Home%20Page/custom_widgets.dart';
 
-import 'buttons_and_checkboxes.dart';
-import 'custom_appbars.dart';
+import '../custom_appbars.dart';
+import 'List Views/ListviewBuilders.dart';
+import 'buttons.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
           child: CustomAppBar1(),
         ),
         body: const HomePageBody(),
-        floatingActionButton: const HomePageAddButton());
+        floatingActionButton: const AddNewTaskButton());
   }
 }
 
@@ -35,7 +36,7 @@ class HomePageBodyState extends State<HomePageBody> {
         Column(
           children: [
             HabitsWidget(),
-            BuildListView1(),
+            HabitsListBuilder(),
           ],
         ),
         SizedBox(
@@ -44,7 +45,7 @@ class HomePageBodyState extends State<HomePageBody> {
         Column(
           children: [
             ToDoWidget(),
-            BuildListView2(),
+            ToDoListBuilder(),
           ],
         )
       ]),

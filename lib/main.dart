@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tryout/provider_sm.dart';
+import 'package:tryout/State%20Management/provider_sm.dart';
 
-import 'home_page.dart';
+import 'Home Page/home_page.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
