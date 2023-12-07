@@ -12,6 +12,11 @@ class TaskModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeTask(String habitTaskName) {
+    habitsList.removeWhere((task) => task.name == habitTaskName);
+    notifyListeners();
+  }
+
   void habitsListCheckBoxChanged(bool? value, String taskName) {
     final task = habitsList.firstWhere((task) => task.name == taskName,
         orElse: () => Task(name: taskName, completed: false));

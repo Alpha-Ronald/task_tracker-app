@@ -6,16 +6,18 @@ import 'package:tryout/custom_appbars.dart';
 import 'tasks_frequency.dart';
 
 class CreateNewHabitPage extends StatelessWidget {
-  const CreateNewHabitPage({super.key});
+  const CreateNewHabitPage({super.key, required this.buttonTitle});
+
+  final String buttonTitle;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(90), // Set the desired height
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(90), // Set the desired height
         child: CustomAppBar2(
-          title: 'Create a new habit',
+          title: buttonTitle,
         ),
       ),
       body: const CreateNewHabitBody(),
