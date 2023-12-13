@@ -4,16 +4,14 @@ import 'package:provider/provider.dart';
 import '../../State Management/provider_sm.dart';
 import 'tiles.dart';
 
-class HabitsListBuilder extends StatefulWidget {
-  const HabitsListBuilder({super.key});
+class HabitsListBuilder1 extends StatefulWidget {
+  const HabitsListBuilder1({super.key});
 
   @override
-  State<HabitsListBuilder> createState() => HabitsListBuilderState();
+  State<HabitsListBuilder1> createState() => HabitsListBuilder1State();
 }
 
-class HabitsListBuilderState extends State<HabitsListBuilder> {
-//checkbox tapped
-
+class HabitsListBuilder1State extends State<HabitsListBuilder1> {
   @override
   Widget build(BuildContext context) {
     var taskModel = Provider.of<TaskModel>(context);

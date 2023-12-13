@@ -49,7 +49,7 @@ class EditTasksPageState extends State<EditTasksPage> {
                 CustomTaskList()
               else
                 CompulsoryTaskList(),*/
-              const HabitsTileEdits(),
+              const HabitsListBuilder2(),
             ],
           ),
         ),

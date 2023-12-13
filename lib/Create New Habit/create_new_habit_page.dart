@@ -6,9 +6,10 @@ import 'package:tryout/custom_appbars.dart';
 import 'tasks_frequency.dart';
 
 class CreateNewHabitPage extends StatelessWidget {
-  const CreateNewHabitPage({super.key, required this.buttonTitle});
+  const CreateNewHabitPage({super.key, required this.buttonTitle, this.task});
 
   final String buttonTitle;
+  final Task? task;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,9 @@ class CreateNewHabitPage extends StatelessWidget {
 }
 
 class CreateNewHabitBody extends StatefulWidget {
-  const CreateNewHabitBody({super.key});
+  const CreateNewHabitBody({super.key, this.task});
+
+  final Task? task;
 
   @override
   State<CreateNewHabitBody> createState() => CreateNewHabitBodyState();
@@ -34,6 +37,34 @@ class CreateNewHabitBody extends StatefulWidget {
 
 class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
   final controller = TextEditingController();
+  late Task? editingTask;
+
+  @override
+  void initState() {
+    super.initState();
+    editingTask = widget.task;
+    controller.text = editingTask?.name ?? ''; // Pre-fill the text field
+  }
+
+  /*if (editingTask != null) {
+      controller.text = editingTask!.name;
+    }*/
+
+  void onCreateGoalPressed() {
+    if (editingTask != null) {
+      editingTask!.name = controller.text; // Update task name
+      context.read<TaskModel>().updateTaskName(editingTask!, controller.text);
+      Navigator.pop(context);
+      controller.clear();
+    } else {
+      final habitTaskName = controller.text;
+      if (habitTaskName.isNotEmpty) {
+        context.read<TaskModel>().addTask(habitTaskName, false);
+        Navigator.pop(context);
+        controller.clear();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,26 +93,24 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                  onTap: () {
+                  onTap: onCreateGoalPressed,
+                  /*() {
+                    if (editingTask != null) {
+                      editingTask!.name = controller.text; // Update task name
+                      context
+                          .read<TaskModel>()
+                          .updateTaskName(editingTask!, controller.text);
+                      Navigator.pop(context);
+                      controller.clear();
+                    }
+                  },*/
+                  /*{
                     final habitTaskName = controller.text;
                     if (habitTaskName.isNotEmpty) {
                       context.read<TaskModel>().addTask(habitTaskName, false);
                       Navigator.pop(context);
                       controller.clear();
                     }
-                  },
-                  //{taskModel.addTask(habitTaskName, completed: )},
-                  /*onTap: () {
-                    String newTask = controller.text;
-                    if (newTask.isNotEmpty) {
-                      taskModel.addTask(newTask, false);
-                      controller.clear();
-                    }
-                    //
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                    }
-                    //
                   },*/
                   splashColor: const Color(0xFF1D364D),
                   child: Container(

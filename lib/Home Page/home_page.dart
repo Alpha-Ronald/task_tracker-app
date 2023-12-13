@@ -36,7 +36,7 @@ class HomePageBodyState extends State<HomePageBody> {
         Column(
           children: [
             HabitsWidget(),
-            HabitsListBuilder(),
+            HabitsListBuilder1(),
           ],
         ),
         SizedBox(

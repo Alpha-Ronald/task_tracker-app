@@ -23,11 +23,16 @@ class TaskModel extends ChangeNotifier {
     task.completed = value ?? false;
     notifyListeners();
   }
+
+  void updateTaskName(Task task, String newName) {
+    task.name = newName;
+    notifyListeners();
+  }
 }
 
 class Task {
   Task({required this.name, this.completed = false});
 
-  final String name;
+  late final String name;
   bool completed;
 }
