@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tryout/Edit%20Tasks/settigs_tasks_tiles.dart';
-
-import '../Home Page/buttons.dart';
-import '../custom_appbars.dart';
-import 'edit_tasks_options_activation.dart';
+import '../../Home Page/buttons.dart';
+import '../../custom_appbars.dart';
+import 'habits_list_builder.dart';
+import 'tasks_options_activation.dart';
 
 class EditTasksPage extends StatefulWidget {
   const EditTasksPage({super.key});
@@ -45,11 +44,10 @@ class EditTasksPageState extends State<EditTasksPage> {
               const SizedBox(
                 height: 40,
               ),
-              /*if (showHabitsList)
-                CustomTaskList()
+              if (showHabitsList)
+                const HabitsListBuilder2()
               else
-                CompulsoryTaskList(),*/
-              const HabitsListBuilder2(),
+                const HabitsListBuilder2(),
             ],
           ),
         ),

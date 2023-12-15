@@ -14,7 +14,9 @@ class AddNewTaskButton extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const CreateNewHabitPage()));
+                  builder: (context) => const CreateNewHabitPage(
+                        buttonTitle: '',
+                      )));
         },
         backgroundColor: const Color(0xFF1D364D),
         tooltip: 'Add new Habit/Task',
