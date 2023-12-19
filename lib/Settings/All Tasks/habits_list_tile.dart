@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../Create New Habit/create_new_habit_page.dart';
 import '../../State Management/provider_sm.dart';
 
-class HabitsTileEdits extends StatefulWidget {
-  const HabitsTileEdits({
+class HabitsTasksTile extends StatefulWidget {
+  const HabitsTasksTile({
     super.key,
     required this.habitsTask,
   });
@@ -12,46 +13,53 @@ class HabitsTileEdits extends StatefulWidget {
   final Task habitsTask;
 
   @override
-  State<HabitsTileEdits> createState() => _HabitsTileEditsState();
+  State<HabitsTasksTile> createState() => _HabitsTasksTileState();
 }
 
-class _HabitsTileEditsState extends State<HabitsTileEdits> {
+class _HabitsTasksTileState extends State<HabitsTasksTile> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-      child: Container(
-          height: 90,
-          width: double.maxFinite,
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-              color: const Color(0xFF1D364D).withOpacity(0.1),
-              borderRadius: BorderRadius.circular(10)),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.habitsTask.name,
-                  style: Theme.of(context)
-                      .textTheme
-                      .displaySmall
-                      ?.copyWith(fontSize: 20),
-                ),
-                Text(
-                  '(Everyday)',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontSize: 15,
-                      color: const Color(0xFF1D364D).withOpacity(0.5)),
-                )
-              ],
-            ),
-            //IconButton(onPressed: () {}, icon: Icon(more))
-            PopUpOptions(task: widget.habitsTask)
-          ])),
-    );
+    return Consumer<TaskModel>(builder: (context, taskModel, child) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+        child: Container(
+            height: 90,
+            width: double.maxFinite,
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+                color: const Color(0xFF1D364D).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10)),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.habitsTask.name,
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(fontSize: 20),
+                      ),
+                      Text(
+                        '(Everyday)',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(
+                                fontSize: 15,
+                                color:
+                                    const Color(0xFF1D364D).withOpacity(0.5)),
+                      )
+                    ],
+                  ),
+                  //IconButton(onPressed: () {}, icon: Icon(more))
+                  PopUpOptions(task: widget.habitsTask)
+                ])),
+      );
+    });
   }
 }
 

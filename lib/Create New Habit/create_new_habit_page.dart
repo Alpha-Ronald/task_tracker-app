@@ -37,20 +37,19 @@ class CreateNewHabitBody extends StatefulWidget {
 
 class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
   final controller = TextEditingController();
-  late Task? editingTask;
 
-  @override
+  /*@override
   void initState() {
     super.initState();
     editingTask = widget.task;
-    controller.text = editingTask?.name ?? ''; // Pre-fill the text field
-  }
+    controller.text = editingTask?.name ?? '';  // Pre-fill the text field
+  }*/
 
   /*if (editingTask != null) {
       controller.text = editingTask!.name;
     }*/
 
-  void onCreateGoalPressed() {
+  /*void onCreateGoalPressed() {
     if (editingTask != null) {
       editingTask!.name = controller.text; // Update task name
       context.read<TaskModel>().updateTaskName(editingTask!, controller.text);
@@ -64,7 +63,7 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
         controller.clear();
       }
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +92,14 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                  onTap: onCreateGoalPressed,
+                  onTap: () {
+                    final habitTaskName = controller.text;
+                    if (habitTaskName.isNotEmpty) {
+                      context.read<TaskModel>().addTask(habitTaskName, false);
+                      Navigator.pop(context);
+                      controller.clear();
+                    }
+                  },
                   /*() {
                     if (editingTask != null) {
                       editingTask!.name = controller.text; // Update task name

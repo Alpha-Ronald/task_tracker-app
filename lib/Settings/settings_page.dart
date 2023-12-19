@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../custom_appbars.dart';
-import 'All Tasks/all_tasks_page.dart';
+import 'All Tasks/all_tasks_list_page.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});

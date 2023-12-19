@@ -21,7 +21,7 @@ class HabitsListBuilder2State extends State<HabitsListBuilder2> {
       itemCount: taskModel.habitsList.length,
       itemBuilder: (context, index) {
         final taskModel = Provider.of<TaskModel>(context, listen: false);
-        return HabitsTileEdits(
+        return HabitsTasksTile(
           habitsTask: taskModel.habitsList[index],
         );
       },
