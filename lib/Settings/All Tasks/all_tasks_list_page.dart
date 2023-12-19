@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+
 import '../../Home Page/buttons.dart';
 import '../../custom_appbars.dart';
 import 'habits_list_builder.dart';
 import 'tasks_options_activation.dart';
 
-class EditTasksPage extends StatefulWidget {
-  const EditTasksPage({super.key});
+class AllTasksPage extends StatefulWidget {
+  const AllTasksPage({super.key});
 
   @override
-  State<EditTasksPage> createState() => EditTasksPageState();
+  State<AllTasksPage> createState() => AllTasksPageState();
 }
 
-class EditTasksPageState extends State<EditTasksPage> {
+class AllTasksPageState extends State<AllTasksPage> {
   bool showHabitsList = true;
 
   @override

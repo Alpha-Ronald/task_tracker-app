@@ -23,7 +23,7 @@ class Settings extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const EditTasksPage()));
+                      builder: (context) => const AllTasksPage()));
             },
             option: "My Habits and To-Do's",
             iconData: Icons.emoji_events_outlined,

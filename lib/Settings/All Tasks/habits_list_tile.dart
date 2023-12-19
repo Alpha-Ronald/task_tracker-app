@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../Create New Habit/create_new_habit_page.dart';
 import '../../State Management/provider_sm.dart';
+import 'edit_habit_page.dart';
 
 class HabitsTasksTile extends StatefulWidget {
   const HabitsTasksTile({
@@ -128,8 +128,9 @@ class PopUpOptions extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => CreateNewHabitPage(
-                      buttonTitle: 'Edit Habit', task: task)));
+                  builder: (context) => const EditHabitPage(
+                        title: '',
+                      )));
         } else if (value == 'delete') {
           // Handle delete action
         }

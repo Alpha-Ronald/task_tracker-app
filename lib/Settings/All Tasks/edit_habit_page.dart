@@ -1,68 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tryout/State%20Management/provider_sm.dart';
-import 'package:tryout/custom_appbars.dart';
 
-import 'tasks_frequency.dart';
+import '../../Create New Habit/tasks_frequency.dart';
+import '../../State Management/provider_sm.dart';
+import '../../custom_appbars.dart';
 
-class CreateNewHabitPage extends StatelessWidget {
-  const CreateNewHabitPage({super.key, required this.buttonTitle});
+class EditHabitPage extends StatelessWidget {
+  const EditHabitPage({super.key, required this.title});
 
-  final String buttonTitle;
+  final String title;
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme
+          .of(context)
+          .colorScheme
+          .background,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(90), // Set the desired height
         child: CustomAppBar2(
-          title: buttonTitle,
+          title: title,
         ),
       ),
-      body: const CreateNewHabitBody(),
+      body: const EditHabitBody(),
     );
   }
 }
 
-class CreateNewHabitBody extends StatefulWidget {
-  const CreateNewHabitBody({super.key, this.task});
+class EditHabitBody extends StatefulWidget {
+  const EditHabitBody({super.key, this.task});
 
   final Task? task;
 
   @override
-  State<CreateNewHabitBody> createState() => CreateNewHabitBodyState();
+  State<EditHabitBody> createState() => EditHabitBodyState();
 }
 
-class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
+class EditHabitBodyState extends State<EditHabitBody> {
   final controller = TextEditingController();
-
-  /*@override
-  void initState() {
-    super.initState();
-    editingTask = widget.task;
-    controller.text = editingTask?.name ?? '';  // Pre-fill the text field
-  }*/
-
-  /*if (editingTask != null) {
-      controller.text = editingTask!.name;
-    }*/
-
-  /*void onCreateGoalPressed() {
-    if (editingTask != null) {
-      editingTask!.name = controller.text; // Update task name
-      context.read<TaskModel>().updateTaskName(editingTask!, controller.text);
-      Navigator.pop(context);
-      controller.clear();
-    } else {
-      final habitTaskName = controller.text;
-      if (habitTaskName.isNotEmpty) {
-        context.read<TaskModel>().addTask(habitTaskName, false);
-        Navigator.pop(context);
-        controller.clear();
-      }
-    }
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +51,7 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                TextFieldCreate(
+                TextFieldEdit(
                   controller: controller,
                 ),
                 const SizedBox(
@@ -99,24 +76,6 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
                       controller.clear();
                     }
                   },
-                  /*() {
-                    if (editingTask != null) {
-                      editingTask!.name = controller.text; // Update task name
-                      context
-                          .read<TaskModel>()
-                          .updateTaskName(editingTask!, controller.text);
-                      Navigator.pop(context);
-                      controller.clear();
-                    }
-                  },*/
-                  /*{
-                    final habitTaskName = controller.text;
-                    if (habitTaskName.isNotEmpty) {
-                      context.read<TaskModel>().addTask(habitTaskName, false);
-                      Navigator.pop(context);
-                      controller.clear();
-                    }
-                  },*/
                   splashColor: const Color(0xFF1D364D),
                   child: Container(
                     height: 60,
@@ -125,8 +84,9 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
                         color: const Color(0xFF1D364D),
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
-                        child: Text('Create goal',
-                            style: Theme.of(context)
+                        child: Text('Edit goal',
+                            style: Theme
+                                .of(context)
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(color: Colors.white70))),
@@ -139,9 +99,9 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
   }
 }
 
-class TextFieldCreate extends StatelessWidget {
+class TextFieldEdit extends StatelessWidget {
   //TextField1({super.key, required TextEditingController controller});
-  const TextFieldCreate({Key? key, required this.controller}) : super(key: key);
+  const TextFieldEdit({Key? key, required this.controller}) : super(key: key);
 
   final TextEditingController controller;
 
