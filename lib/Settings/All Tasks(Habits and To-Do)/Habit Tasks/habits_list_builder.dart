@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../State Management/provider_sm.dart';
+import '../../../State Management/provider_sm.dart';
 import 'edit_habit_page.dart';
 import 'habits_list_tile.dart';
 
@@ -22,7 +22,7 @@ class HabitsListBuilder2State extends State<HabitsListBuilder2> {
   Widget build(BuildContext context) {
     var taskModel = Provider.of<TaskModel>(context);
     return ListView.builder(
-      //physics: const NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: taskModel.habitsList.length,
       itemBuilder: (context, index) {

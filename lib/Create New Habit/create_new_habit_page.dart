@@ -6,21 +6,16 @@ import 'package:tryout/custom_appbars.dart';
 import 'tasks_frequency.dart';
 
 class CreateNewHabitPage extends StatelessWidget {
-  const CreateNewHabitPage({super.key, required this.buttonTitle});
-
-  final String buttonTitle;
+  const CreateNewHabitPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme
-          .of(context)
-          .colorScheme
-          .background,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(90), // Set the desired height
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(90), // Set the desired height
         child: CustomAppBar2(
-          title: buttonTitle,
+          title: 'Create a new habit',
         ),
       ),
       body: const CreateNewHabitBody(),
@@ -39,7 +34,6 @@ class CreateNewHabitBody extends StatefulWidget {
 
 class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
   final controller = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +97,7 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                         child: Text('Create goal',
-                            style: Theme
-                                .of(context)
+                            style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(color: Colors.white70))),
@@ -126,9 +119,11 @@ class TextFieldCreate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      maxLength: 29,
       controller: controller,
       decoration: const InputDecoration(
-          hintText: 'Enter a title...',
+          //hintText: 'Enter a title...',
+          hintText: 'New Habit title...',
           hintStyle: TextStyle(fontSize: 40, color: Colors.black26),
           //focusColor: Color(0xFF1D364D),
           border: InputBorder.none),

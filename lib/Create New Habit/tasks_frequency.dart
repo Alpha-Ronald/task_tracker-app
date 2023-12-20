@@ -18,6 +18,45 @@ class TaskFrequencyState extends State<TaskFrequency> {
   bool repeatCheckBoxValue = false;
   bool onChecked = false;
 
+  void handleCheckBoxChange(String checkBoxName) {
+    setState(() {
+      switch (checkBoxName) {
+        case 'once':
+          if (!onceCheckBoxValue) {
+            onceCheckBoxValue = true;
+            everydayCheckBoxValue = false;
+            someDaysCheckBoxValue = false;
+            repeatCheckBoxValue = false;
+          }
+          break;
+        case 'everyday':
+          if (!everydayCheckBoxValue) {
+            onceCheckBoxValue = false;
+            everydayCheckBoxValue = true;
+            someDaysCheckBoxValue = false;
+            repeatCheckBoxValue = false;
+          }
+          break;
+        case 'someDays':
+          if (!someDaysCheckBoxValue) {
+            onceCheckBoxValue = false;
+            everydayCheckBoxValue = false;
+            someDaysCheckBoxValue = true;
+            repeatCheckBoxValue = false;
+          }
+          break;
+        case 'repeat':
+          if (!repeatCheckBoxValue) {
+            onceCheckBoxValue = false;
+            everydayCheckBoxValue = false;
+            someDaysCheckBoxValue = false;
+            repeatCheckBoxValue = true;
+          }
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,6 +84,9 @@ class TaskFrequencyState extends State<TaskFrequency> {
                       child: CustomCheckBox(
                         value: onceCheckBoxValue,
                         onChanged: (bool newValue) {
+                          handleCheckBoxChange('once');
+                        }
+                        /*{
                           setState(() {
                             onceCheckBoxValue = newValue;
                             if (newValue) {
@@ -53,7 +95,8 @@ class TaskFrequencyState extends State<TaskFrequency> {
                               repeatCheckBoxValue = false;
                             }
                           });
-                        },
+                        }*/
+                        ,
                       ),
                     ),
                     Text(
@@ -72,6 +115,9 @@ class TaskFrequencyState extends State<TaskFrequency> {
                       child: CustomCheckBox(
                         value: everydayCheckBoxValue,
                         onChanged: (bool newValue) {
+                          handleCheckBoxChange('everyday');
+                        },
+                        /*{
                           setState(() {
                             everydayCheckBoxValue = newValue;
                             if (newValue) {
@@ -80,7 +126,7 @@ class TaskFrequencyState extends State<TaskFrequency> {
                               repeatCheckBoxValue = false;
                             }
                           });
-                        },
+                        }*/
                       ),
                     ),
                     Text(
@@ -99,6 +145,9 @@ class TaskFrequencyState extends State<TaskFrequency> {
                       child: CustomCheckBox(
                         value: someDaysCheckBoxValue,
                         onChanged: (bool newValue) {
+                          handleCheckBoxChange('someDays');
+                        }
+                        /*{
                           setState(() {
                             someDaysCheckBoxValue = newValue;
                             if (newValue) {
@@ -107,7 +156,8 @@ class TaskFrequencyState extends State<TaskFrequency> {
                               repeatCheckBoxValue = false;
                             }
                           });
-                        },
+                        }*/
+                        ,
                       ),
                     ),
                     Text(
@@ -126,6 +176,8 @@ class TaskFrequencyState extends State<TaskFrequency> {
                       child: CustomCheckBox(
                         value: repeatCheckBoxValue,
                         onChanged: (bool newValue) {
+                          handleCheckBoxChange('repeat');
+                        } /*{
                           setState(() {
                             repeatCheckBoxValue = newValue;
                             if (newValue) {
@@ -134,7 +186,8 @@ class TaskFrequencyState extends State<TaskFrequency> {
                               someDaysCheckBoxValue = false;
                             }
                           });
-                        },
+                        }*/
+                        ,
                       ),
                     ),
                     Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../State Management/provider_sm.dart';
+import '../../../State Management/provider_sm.dart';
 
 class HabitsTasksTile extends StatelessWidget {
   const HabitsTasksTile({

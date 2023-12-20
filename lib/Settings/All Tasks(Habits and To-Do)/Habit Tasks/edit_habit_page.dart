@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../../Create New Habit/tasks_frequency.dart';
-import '../../State Management/provider_sm.dart';
-import '../../custom_appbars.dart';
+import '../../../Create New Habit/tasks_frequency.dart';
+import '../../../State Management/provider_sm.dart';
+import '../../../custom_appbars.dart';
 
 class EditHabitPage extends StatelessWidget {
   const EditHabitPage(
@@ -137,6 +138,8 @@ class TextFieldEdit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      maxLength: 29,
+      maxLengthEnforcement: MaxLengthEnforcement.enforced,
       controller: controller,
       decoration: const InputDecoration(
           hintText: 'Enter a title...',
