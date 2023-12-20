@@ -6,40 +6,57 @@ import '../../State Management/provider_sm.dart';
 import '../../custom_appbars.dart';
 
 class EditHabitPage extends StatelessWidget {
-  const EditHabitPage({super.key, required this.title});
+  const EditHabitPage(
+      {super.key, required this.title, this.task, required this.onEdit});
 
   final String title;
-
+  final Task? task;
+  final Function(Task, String) onEdit;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme
-          .of(context)
-          .colorScheme
-          .background,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(90), // Set the desired height
         child: CustomAppBar2(
           title: title,
         ),
       ),
-      body: const EditHabitBody(),
+      body: EditHabitBody(
+        task: task,
+        onEdit: onEdit,
+      ),
     );
   }
 }
 
 class EditHabitBody extends StatefulWidget {
-  const EditHabitBody({super.key, this.task});
+  const EditHabitBody({super.key, required this.task, required this.onEdit});
 
   final Task? task;
+  final Function(Task, String) onEdit;
 
   @override
   State<EditHabitBody> createState() => EditHabitBodyState();
 }
 
 class EditHabitBodyState extends State<EditHabitBody> {
-  final controller = TextEditingController();
+  //final controller = TextEditingController();
+
+  final TextEditingController controller = TextEditingController();
+
+  @override
+  /*void initState() {
+    controller.text = widget.task!.name;
+    super.initState();
+  }*/
+  void initState() {
+    if (widget.task != null) {
+      controller.text = widget.task!.name ?? '';
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,13 +86,26 @@ class EditHabitBodyState extends State<EditHabitBody> {
             children: [
               InkWell(
                   onTap: () {
+                    final task = widget.task ?? Task(name: '');
+                    widget.onEdit(task, controller.text);
+                  },
+                  /*() {
+                    if (widget.task != null) {
+                      context
+                          .read<TaskModel>()
+                          .updateTaskName(widget.task!, controller.text);
+                      Navigator.pop(context);
+                    }
+                  }*/
+                  /*{
                     final habitTaskName = controller.text;
                     if (habitTaskName.isNotEmpty) {
                       context.read<TaskModel>().addTask(habitTaskName, false);
                       Navigator.pop(context);
                       controller.clear();
                     }
-                  },
+                  }*/
+
                   splashColor: const Color(0xFF1D364D),
                   child: Container(
                     height: 60,
@@ -85,8 +115,7 @@ class EditHabitBodyState extends State<EditHabitBody> {
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                         child: Text('Edit goal',
-                            style: Theme
-                                .of(context)
+                            style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(color: Colors.white70))),

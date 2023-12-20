@@ -2,21 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../State Management/provider_sm.dart';
-import 'edit_habit_page.dart';
 
-class HabitsTasksTile extends StatefulWidget {
+class HabitsTasksTile extends StatelessWidget {
   const HabitsTasksTile({
     super.key,
     required this.habitsTask,
+    required this.onEdit,
   });
 
   final Task habitsTask;
+  final VoidCallback onEdit;
 
-  @override
-  State<HabitsTasksTile> createState() => _HabitsTasksTileState();
-}
-
-class _HabitsTasksTileState extends State<HabitsTasksTile> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TaskModel>(builder: (context, taskModel, child) {
@@ -37,7 +33,7 @@ class _HabitsTasksTileState extends State<HabitsTasksTile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.habitsTask.name,
+                        habitsTask.name ?? '',
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall
@@ -56,7 +52,7 @@ class _HabitsTasksTileState extends State<HabitsTasksTile> {
                     ],
                   ),
                   //IconButton(onPressed: () {}, icon: Icon(more))
-                  PopUpOptions(task: widget.habitsTask)
+                  PopUpOptions(task: habitsTask, onEdit: onEdit)
                 ])),
       );
     });
@@ -64,9 +60,10 @@ class _HabitsTasksTileState extends State<HabitsTasksTile> {
 }
 
 class PopUpOptions extends StatelessWidget {
-  const PopUpOptions({super.key, required this.task});
+  const PopUpOptions({super.key, required this.task, required this.onEdit});
 
   final Task task;
+  final Function() onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -125,13 +122,17 @@ class PopUpOptions extends StatelessWidget {
       onSelected: (String value) {
         // Handle item selection
         if (value == 'edit') {
+          onEdit();
+        }
+        /*{
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => const EditHabitPage(
                         title: '',
                       )));
-        } else if (value == 'delete') {
+        }*/
+        else if (value == 'delete') {
           // Handle delete action
         }
       },

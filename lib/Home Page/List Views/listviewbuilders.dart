@@ -22,10 +22,10 @@ class HabitsListBuilder1State extends State<HabitsListBuilder1> {
       itemBuilder: (context, index) {
         final taskModel = Provider.of<TaskModel>(context, listen: false);
         return HabitsTile(
-            habitTaskName: taskModel.habitsList[index].name,
+            habitTaskName: taskModel.habitsList[index].name ?? '',
             habitTaskCompleted: taskModel.habitsList[index].completed,
             onChanged: (value) => taskModel.habitsListCheckBoxChanged(
-                value, taskModel.habitsList[index].name));
+                value, taskModel.habitsList[index].name ?? ''));
       },
     );
   }

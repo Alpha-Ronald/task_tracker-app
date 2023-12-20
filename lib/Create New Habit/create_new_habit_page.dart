@@ -13,7 +13,10 @@ class CreateNewHabitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme
+          .of(context)
+          .colorScheme
+          .background,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(90), // Set the desired height
         child: CustomAppBar2(
@@ -37,32 +40,6 @@ class CreateNewHabitBody extends StatefulWidget {
 class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
   final controller = TextEditingController();
 
-  /*@override
-  void initState() {
-    super.initState();
-    editingTask = widget.task;
-    controller.text = editingTask?.name ?? '';  // Pre-fill the text field
-  }*/
-
-  /*if (editingTask != null) {
-      controller.text = editingTask!.name;
-    }*/
-
-  /*void onCreateGoalPressed() {
-    if (editingTask != null) {
-      editingTask!.name = controller.text; // Update task name
-      context.read<TaskModel>().updateTaskName(editingTask!, controller.text);
-      Navigator.pop(context);
-      controller.clear();
-    } else {
-      final habitTaskName = controller.text;
-      if (habitTaskName.isNotEmpty) {
-        context.read<TaskModel>().addTask(habitTaskName, false);
-        Navigator.pop(context);
-        controller.clear();
-      }
-    }
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +103,8 @@ class CreateNewHabitBodyState extends State<CreateNewHabitBody> {
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                         child: Text('Create goal',
-                            style: Theme.of(context)
+                            style: Theme
+                                .of(context)
                                 .textTheme
                                 .displaySmall
                                 ?.copyWith(color: Colors.white70))),

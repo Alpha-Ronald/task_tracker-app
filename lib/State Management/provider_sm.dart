@@ -28,11 +28,18 @@ class TaskModel extends ChangeNotifier {
     task.name = newName;
     notifyListeners();
   }
+/*void updateTaskName(Task task, String newName) {
+    final index = habitsList.indexOf(task);
+    if (index != -1) {
+      habitsList[index].name = newName;
+      notifyListeners();
+    }
+  }*/
 }
 
 class Task {
-  Task({required this.name, this.completed = false});
+  Task({this.name, this.completed = false});
 
-  late final String name;
+  String? name;
   bool completed;
 }
