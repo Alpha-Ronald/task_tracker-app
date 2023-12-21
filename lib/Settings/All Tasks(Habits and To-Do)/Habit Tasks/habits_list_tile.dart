@@ -134,6 +134,7 @@ class PopUpOptions extends StatelessWidget {
         }*/
         else if (value == 'delete') {
           // Handle delete action
+          showDeleteConfirmationDialog(context, task);
         }
       },
       color: const Color(0xFF1D364D).withOpacity(0.8),
@@ -142,6 +143,45 @@ class PopUpOptions extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
+    );
+  }
+
+  //delete option dialogue
+  void showDeleteConfirmationDialog(BuildContext context, Task task) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: const Color(0xFF1D364D),
+          title: const Text('Delete'),
+          content: const Text('Are you sure you want to delete this habit?'),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the dialog
+                  },
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.white70),
+                  child: const Text('Cancel'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Perform delete action
+                    context.read<TaskModel>().removeTask(task.name!);
+                    Navigator.of(context).pop(); // Close the dialog
+                  },
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.white10),
+                  child: const Text('Yes'),
+                ),
+              ],
+            )
+          ],
+        );
+      },
     );
   }
 }
