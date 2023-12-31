@@ -1,14 +1,14 @@
-# Task tracker
+# Task tracker app
+Contains a Habits List and a To-Do list.
 
-starting with 2 pages.
+It's a practice project using the Provider state management to handl logic.
 
-## Page 1
-* Display compulsory tasks and custom tasks. [Use already assigned tasks]
+## Features include:
+Add tasks to the list,
+Remove tas=sks from the list,
+Edit tasks.
 
-## page 2 - Create a new habit
-State management [Provider]
-* once
-* Every day
-  -Set a reminder
+## Other features:
+Date and time settings, Setting up frequency of tasks.
 
   
